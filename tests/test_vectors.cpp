@@ -1,5 +1,6 @@
 #include "ArrayVector.hpp"
 #include "DequeVector.hpp"
+#include "LinkedListDequeVector.hpp"
 #include "LinkedListVector.hpp"
 
 #include <cstddef>
@@ -225,6 +226,7 @@ int main() {
     std::vector<TestCase> tests;
     add_vector_tests<ArrayVector<int>>(tests, "ArrayVector");
     add_vector_tests<LinkedListVector<int>>(tests, "LinkedListVector");
+    add_vector_tests<LinkedListDequeVector<int>>(tests, "LinkedListDequeVector");
     add_vector_tests<DequeVector<int>>(tests, "DequeVector");
 
     int failures = 0;

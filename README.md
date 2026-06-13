@@ -2,10 +2,11 @@
 
 Starter project for implementing and comparing vector-like containers in C++20.
 
-The repo currently contains three implementations behind the same `IVector<T>` interface:
+The repo currently contains four implementations behind the same `IVector<T>` interface:
 
 - `ArrayVector`: dynamic-array-backed vector
 - `LinkedListVector`: linked-list-backed vector
+- `LinkedListDequeVector`: deque API implemented by delegating to `LinkedListVector`
 - `DequeVector`: deque-style circular buffer
 
 ## Current Status
@@ -16,8 +17,9 @@ Current implementation status:
 
 - `ArrayVector` passes its method-level contract tests.
 - `LinkedListVector` passes its method-level contract tests and uses sentinel nodes with `std::unique_ptr` ownership for forward links.
-- `DequeVector` is mostly a placeholder.
-- The test harness now reports method-level pass/fail results for all three vector types.
+- `LinkedListDequeVector` passes its method-level contract tests by using `LinkedListVector` internally.
+- `DequeVector` is mostly a placeholder for an array-backed deque implementation.
+- The test harness now reports method-level pass/fail results for all four vector types.
 
 The latest observed `make test` run reports `11 test(s) failed`, all in `DequeVector`.
 
