@@ -21,7 +21,7 @@ All implementations inherit from `IVector<T>`.
 
 The repo is intentionally incomplete. Do not treat failing tests as a harness problem by default. The tests are method-level contract checks that show which vector operations still need implementation.
 
-At the current snapshot, `ArrayVector` has partial behavior implemented, while `LinkedListVector` and `DequeVector` are mostly placeholders.
+At the current snapshot, `ArrayVector` and `LinkedListVector` pass their method-level contract tests, while `DequeVector` is mostly placeholder.
 
 ## Coding Notes
 
@@ -29,4 +29,5 @@ At the current snapshot, `ArrayVector` has partial behavior implemented, while `
 - Prefer the existing simple style over adding new abstractions.
 - Preserve the `IVector<T>` public interface unless explicitly asked to change it.
 - When adding behavior, run `make test` and use the per-method failures to guide the next implementation step.
+- Before making a commit, check whether `README.md`, `AGENTS.md`, or other docs need to be updated to match the code and test status. Include those documentation updates in the same commit when they describe the change being committed.
 - Avoid committing generated files under `build/`.

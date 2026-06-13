@@ -10,17 +10,16 @@ The repo currently contains three implementations behind the same `IVector<T>` i
 
 ## Current Status
 
-This project is intentionally in progress. `make test` is expected to fail until all vector methods are implemented.
+This project is intentionally in progress. `make test` is expected to fail until all vector implementations are complete.
 
 Current implementation status:
 
-- `ArrayVector` has partial behavior for `at`, `front`, `back`, `push_back`, `pop_back`, `clear`, `size`, `capacity`, and `empty`.
-- `ArrayVector` still needs correct implementations for `push_front`, `insert`, `pop_front`, `erase`, and empty-removal error handling.
-- `LinkedListVector` is mostly a placeholder.
+- `ArrayVector` passes its method-level contract tests.
+- `LinkedListVector` passes its method-level contract tests and uses sentinel nodes with `std::unique_ptr` ownership for forward links.
 - `DequeVector` is mostly a placeholder.
 - The test harness now reports method-level pass/fail results for all three vector types.
 
-The latest observed `make test` run reports `29 test(s) failed`.
+The latest observed `make test` run reports `11 test(s) failed`, all in `DequeVector`.
 
 ## Build
 
@@ -40,7 +39,7 @@ make
 make test
 ```
 
-The tests compile and run, but they intentionally return a failing exit code while the implementations are incomplete.
+The tests compile and run, but they intentionally return a failing exit code while `DequeVector` remains incomplete.
 
 ## Interface
 
@@ -55,3 +54,5 @@ All implementations inherit from `IVector<T>` and support:
 ## Codex Notes
 
 Repo-level Codex guidance lives in `AGENTS.md`.
+
+Documentation should be reviewed and updated before each commit when code or test status changes.
