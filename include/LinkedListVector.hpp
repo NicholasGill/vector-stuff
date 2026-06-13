@@ -3,11 +3,12 @@
 #include "IVector.hpp"
 
 #include <cstddef>
+#include <memory>
 
 template <typename T>
 class LinkedListVector : public IVector<T> {
 public:
-    LinkedListVector() = default;
+    LinkedListVector();
     ~LinkedListVector() override = default;
 
     std::size_t size() const override;
@@ -35,14 +36,13 @@ public:
 private:
     struct Node {
         T value;
-        Node* next = nullptr;
+        std::unique_ptr<Node> next;
         Node* prev = nullptr;
     };
 
     std::size_t size_ = 0;
-    Node* head_ = nullptr;
+    std::unique_ptr<Node> head_;
     Node* tail_ = nullptr;
 };
 
 #include "LinkedListVector.tpp"
-
