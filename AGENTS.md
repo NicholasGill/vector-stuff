@@ -16,6 +16,7 @@ All implementations inherit from `IVector<T>`.
 - Build the sample program: `make`
 - Run the sample program: `./build/vector_perf`
 - Run contract tests: `make test`
+- Run performance benchmarks: `make bench`
 - Remove generated build artifacts: `make clean`
 
 ## Current State

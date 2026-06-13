@@ -43,6 +43,22 @@ make test
 
 The tests compile and run through the method-level contract for each vector implementation.
 
+## Run benchmarks
+
+```sh
+make bench
+```
+
+The benchmark target uses Google Benchmark and builds with optimization. Install Google Benchmark first if your system does not provide `benchmark/benchmark.h` and `libbenchmark`.
+
+On Ubuntu:
+
+```sh
+sudo apt-get install libbenchmark-dev
+```
+
+The benchmark compares `std::vector`, a benchmark-local `SmallVector<64>`, and the project vector implementations across common operations such as push, insert, indexed access, pop, and erase.
+
 ## Interface
 
 All implementations inherit from `IVector<T>` and support:
