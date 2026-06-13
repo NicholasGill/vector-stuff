@@ -128,14 +128,35 @@ void LinkedListVector<T>::insert(std::size_t index, const T& value) {
 
 template <typename T>
 void LinkedListVector<T>::pop_back() {
+    if (empty()) {
+        throw std::out_of_range("LinkedListVector::pop_back on empty vector");
+    }
+    erase(size_ - 1);
 }
 
 template <typename T>
 void LinkedListVector<T>::pop_front() {
+    if (empty()) {
+        throw std::out_of_range("LinkedListVector::pop_front on empty vector");
+    }
+    erase(0);
 }
 
 template <typename T>
 void LinkedListVector<T>::erase(std::size_t index) {
+    if (index >= size_) {
+        throw std::out_of_range("LinkedListVector::erase index out of range");
+    }
+
+    Node* previous = head_.get();
+    for (std::size_t i = 0; i < index; ++i) {
+        previous = previous->next.get();
+    }
+
+    auto removed = std::move(previous->next);
+    previous->next = std::move(removed->next);
+    previous->next->prev = previous;
+    --size_;
 }
 
 template <typename T>
