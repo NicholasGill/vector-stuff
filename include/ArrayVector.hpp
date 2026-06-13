@@ -4,11 +4,15 @@
 
 #include <cstddef>
 
+#include <memory>
+
 template <typename T>
 class ArrayVector : public IVector<T> {
 public:
-    ArrayVector() = default;
-    ~ArrayVector() override = default;
+    ArrayVector();
+    explicit ArrayVector(std::size_t capacity);
+
+    // Destructor is automatically handled by unique pointer via RAII
 
     std::size_t size() const override;
     std::size_t capacity() const override;
@@ -33,10 +37,9 @@ public:
     void clear() override;
 
 private:
-    std::size_t size_ = 0;
+    std::size_t size_;
     std::size_t capacity_ = 0;
-    T* data_ = nullptr;
+    std::unique_ptr<T[]> data;
 };
 
 #include "ArrayVector.tpp"
-
