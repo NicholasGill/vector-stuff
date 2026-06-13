@@ -11,6 +11,8 @@ This is a C++20 starter project for implementing and comparing vector-like conta
 
 All implementations inherit from `IVector<T>`.
 
+Benchmark-only adapters and helper containers live under `bench/` so they stay separate from the project vector definitions in `include/`.
+
 ## Commands
 
 - Build the sample program: `make`

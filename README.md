@@ -57,7 +57,7 @@ On Ubuntu:
 sudo apt-get install libbenchmark-dev
 ```
 
-The benchmark compares `std::vector`, a benchmark-local `SmallVector<64>`, and the project vector implementations across common operations such as push, insert, indexed access, pop, and erase.
+The benchmark compares `std::vector`, a benchmark-local `SmallVector<64>`, and the project vector implementations across common operations such as push, insert, indexed access, pop, and erase. Benchmark-only container adapters live in `bench/BenchmarkVectors.hpp`; `bench/bench_vectors.cpp` contains the Google Benchmark cases and registration.
 
 ## Interface
 
