@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ArrayVector.hpp"
 #include "IVector.hpp"
 
 #include <cstddef>
@@ -33,11 +34,7 @@ public:
     void clear() override;
 
 private:
-    std::size_t size_ = 0;
-    std::size_t capacity_ = 0;
-    T* buffer_ = nullptr;
-    std::size_t front_index_ = 0;
+    ArrayVector<T> storage_;
 };
 
 #include "DequeVector.tpp"
-

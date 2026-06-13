@@ -7,7 +7,7 @@ The repo currently contains four implementations behind the same `IVector<T>` in
 - `ArrayVector`: dynamic-array-backed vector
 - `LinkedListVector`: linked-list-backed vector
 - `LinkedListDequeVector`: deque API implemented by delegating to `LinkedListVector`
-- `DequeVector`: deque-style circular buffer
+- `DequeVector`: deque API implemented by delegating to `ArrayVector`
 
 ## Current Status
 
@@ -18,10 +18,10 @@ Current implementation status:
 - `ArrayVector` passes its method-level contract tests.
 - `LinkedListVector` passes its method-level contract tests and uses sentinel nodes with `std::unique_ptr` ownership for forward links.
 - `LinkedListDequeVector` passes its method-level contract tests by using `LinkedListVector` internally.
-- `DequeVector` is mostly a placeholder for an array-backed deque implementation.
+- `DequeVector` passes its method-level contract tests by using `ArrayVector` internally.
 - The test harness now reports method-level pass/fail results for all four vector types.
 
-The latest observed `make test` run reports `11 test(s) failed`, all in `DequeVector`.
+The latest observed `make test` run passes all tests.
 
 ## Build
 
@@ -41,7 +41,7 @@ make
 make test
 ```
 
-The tests compile and run, but they intentionally return a failing exit code while `DequeVector` remains incomplete.
+The tests compile and run through the method-level contract for each vector implementation.
 
 ## Interface
 

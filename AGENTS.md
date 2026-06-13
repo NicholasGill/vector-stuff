@@ -7,7 +7,7 @@ This is a C++20 starter project for implementing and comparing vector-like conta
 - `ArrayVector<T>`: dynamic-array-backed vector in `include/ArrayVector.hpp` and `include/ArrayVector.tpp`
 - `LinkedListVector<T>`: linked-list-backed vector in `include/LinkedListVector.hpp` and `include/LinkedListVector.tpp`
 - `LinkedListDequeVector<T>`: deque API backed by `LinkedListVector<T>` in `include/LinkedListDequeVector.hpp` and `include/LinkedListDequeVector.tpp`
-- `DequeVector<T>`: circular-buffer/deque-style vector in `include/DequeVector.hpp` and `include/DequeVector.tpp`
+- `DequeVector<T>`: deque API backed by `ArrayVector<T>` in `include/DequeVector.hpp` and `include/DequeVector.tpp`
 
 All implementations inherit from `IVector<T>`.
 
@@ -22,7 +22,7 @@ All implementations inherit from `IVector<T>`.
 
 The repo is intentionally incomplete. Do not treat failing tests as a harness problem by default. The tests are method-level contract checks that show which vector operations still need implementation.
 
-At the current snapshot, `ArrayVector`, `LinkedListVector`, and `LinkedListDequeVector` pass their method-level contract tests, while `DequeVector` is mostly placeholder for an array-backed deque.
+At the current snapshot, `ArrayVector`, `LinkedListVector`, `LinkedListDequeVector`, and `DequeVector` pass their method-level contract tests.
 
 ## Coding Notes
 

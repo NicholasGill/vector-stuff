@@ -1,78 +1,81 @@
 #pragma once
 
-#include <stdexcept>
-
 template <typename T>
 std::size_t DequeVector<T>::size() const {
-    return size_;
+    return storage_.size();
 }
 
 template <typename T>
 std::size_t DequeVector<T>::capacity() const {
-    return capacity_;
+    return storage_.capacity();
 }
 
 template <typename T>
 bool DequeVector<T>::empty() const {
-    return size_ == 0;
+    return storage_.empty();
 }
 
 template <typename T>
 T& DequeVector<T>::at(std::size_t index) {
-    throw std::out_of_range("DequeVector::at is not implemented yet");
+    return storage_.at(index);
 }
 
 template <typename T>
 const T& DequeVector<T>::at(std::size_t index) const {
-    throw std::out_of_range("DequeVector::at is not implemented yet");
+    return storage_.at(index);
 }
 
 template <typename T>
 T& DequeVector<T>::front() {
-    throw std::out_of_range("DequeVector::front is not implemented yet");
+    return storage_.front();
 }
 
 template <typename T>
 const T& DequeVector<T>::front() const {
-    throw std::out_of_range("DequeVector::front is not implemented yet");
+    return storage_.front();
 }
 
 template <typename T>
 T& DequeVector<T>::back() {
-    throw std::out_of_range("DequeVector::back is not implemented yet");
+    return storage_.back();
 }
 
 template <typename T>
 const T& DequeVector<T>::back() const {
-    throw std::out_of_range("DequeVector::back is not implemented yet");
+    return storage_.back();
 }
 
 template <typename T>
 void DequeVector<T>::push_back(const T& value) {
+    storage_.push_back(value);
 }
 
 template <typename T>
 void DequeVector<T>::push_front(const T& value) {
+    storage_.push_front(value);
 }
 
 template <typename T>
 void DequeVector<T>::insert(std::size_t index, const T& value) {
+    storage_.insert(index, value);
 }
 
 template <typename T>
 void DequeVector<T>::pop_back() {
+    storage_.pop_back();
 }
 
 template <typename T>
 void DequeVector<T>::pop_front() {
+    storage_.pop_front();
 }
 
 template <typename T>
 void DequeVector<T>::erase(std::size_t index) {
+    storage_.erase(index);
 }
 
 template <typename T>
 void DequeVector<T>::clear() {
-    size_ = 0;
-    front_index_ = 0;
+    storage_.clear();
 }

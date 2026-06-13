@@ -105,7 +105,7 @@ void ArrayVector<T>::push_front(const T& value) {
 // Inserts value before the element at index.
 template <typename T>
 void ArrayVector<T>::insert(std::size_t index, const T& value) {
-    if (index < 0 or index > size_) {
+    if (index > size_) {
         throw std::out_of_range("ArrayVector::insert out of range");
     }
 
