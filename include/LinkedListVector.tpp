@@ -18,12 +18,12 @@ bool LinkedListVector<T>::empty() const {
 }
 
 template <typename T>
-T& LinkedListVector<T>::at(std::size_t) {
+T& LinkedListVector<T>::at(std::size_t index) {
     throw std::out_of_range("LinkedListVector::at is not implemented yet");
 }
 
 template <typename T>
-const T& LinkedListVector<T>::at(std::size_t) const {
+const T& LinkedListVector<T>::at(std::size_t index) const {
     throw std::out_of_range("LinkedListVector::at is not implemented yet");
 }
 
@@ -48,15 +48,15 @@ const T& LinkedListVector<T>::back() const {
 }
 
 template <typename T>
-void LinkedListVector<T>::push_back(const T&) {
+void LinkedListVector<T>::push_back(const T& value) {
 }
 
 template <typename T>
-void LinkedListVector<T>::push_front(const T&) {
+void LinkedListVector<T>::push_front(const T& value) {
 }
 
 template <typename T>
-void LinkedListVector<T>::insert(std::size_t, const T&) {
+void LinkedListVector<T>::insert(std::size_t index, const T& value) {
 }
 
 template <typename T>
@@ -68,7 +68,7 @@ void LinkedListVector<T>::pop_front() {
 }
 
 template <typename T>
-void LinkedListVector<T>::erase(std::size_t) {
+void LinkedListVector<T>::erase(std::size_t index) {
 }
 
 template <typename T>
@@ -77,4 +77,3 @@ void LinkedListVector<T>::clear() {
     head_ = nullptr;
     tail_ = nullptr;
 }
-

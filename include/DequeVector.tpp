@@ -18,12 +18,12 @@ bool DequeVector<T>::empty() const {
 }
 
 template <typename T>
-T& DequeVector<T>::at(std::size_t) {
+T& DequeVector<T>::at(std::size_t index) {
     throw std::out_of_range("DequeVector::at is not implemented yet");
 }
 
 template <typename T>
-const T& DequeVector<T>::at(std::size_t) const {
+const T& DequeVector<T>::at(std::size_t index) const {
     throw std::out_of_range("DequeVector::at is not implemented yet");
 }
 
@@ -48,15 +48,15 @@ const T& DequeVector<T>::back() const {
 }
 
 template <typename T>
-void DequeVector<T>::push_back(const T&) {
+void DequeVector<T>::push_back(const T& value) {
 }
 
 template <typename T>
-void DequeVector<T>::push_front(const T&) {
+void DequeVector<T>::push_front(const T& value) {
 }
 
 template <typename T>
-void DequeVector<T>::insert(std::size_t, const T&) {
+void DequeVector<T>::insert(std::size_t index, const T& value) {
 }
 
 template <typename T>
@@ -68,7 +68,7 @@ void DequeVector<T>::pop_front() {
 }
 
 template <typename T>
-void DequeVector<T>::erase(std::size_t) {
+void DequeVector<T>::erase(std::size_t index) {
 }
 
 template <typename T>
@@ -76,4 +76,3 @@ void DequeVector<T>::clear() {
     size_ = 0;
     front_index_ = 0;
 }
-
