@@ -17,11 +17,15 @@ $(BUILD_DIR)/vector_perf: src/main.cpp include/*.hpp include/*.tpp | $(BUILD_DIR
 $(BUILD_DIR)/test_vectors: tests/test_vectors.cpp include/*.hpp include/*.tpp | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) tests/test_vectors.cpp -o $@
 
+$(BUILD_DIR)/test_containers: tests/test_containers.cpp include/*.hpp include/*.tpp | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) tests/test_containers.cpp -o $@
+
 $(BUILD_DIR)/bench_vectors: bench/bench_vectors.cpp bench/*.hpp include/*.hpp include/*.tpp | $(BUILD_DIR)
 	$(CXX) $(BENCH_CXXFLAGS) bench/bench_vectors.cpp -o $@ $(BENCH_LDLIBS)
 
-test: $(BUILD_DIR)/test_vectors
+test: $(BUILD_DIR)/test_vectors $(BUILD_DIR)/test_containers
 	./$(BUILD_DIR)/test_vectors
+	./$(BUILD_DIR)/test_containers
 
 bench: $(BUILD_DIR)/bench_vectors
 	./$(BUILD_DIR)/bench_vectors

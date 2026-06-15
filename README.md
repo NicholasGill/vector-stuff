@@ -9,6 +9,12 @@ The repo currently contains four implementations behind the same `IVector<T>` in
 - `LinkedListDequeVector`: deque API implemented by delegating to `LinkedListVector`
 - `DequeVector`: deque API implemented by delegating to `ArrayVector`
 
+Additional contract tests are ready for planned container implementations:
+
+- `HashMap`: key/value map with insert, update, lookup, erase, contains, clear, size, and empty operations.
+- `Heap`: priority-queue style heap with push, top, pop, clear, size, empty, and comparator support.
+- `RingBuffer`: fixed-capacity FIFO buffer with push_back, pop_front, front, back, clear, size, capacity, empty, and full operations.
+
 ## Current Status
 
 This project is intentionally in progress. `make test` is expected to fail until all vector implementations are complete.
@@ -20,8 +26,9 @@ Current implementation status:
 - `LinkedListDequeVector` passes its method-level contract tests by using `LinkedListVector` internally.
 - `DequeVector` passes its method-level contract tests by using `ArrayVector` internally.
 - The test harness now reports method-level pass/fail results for all four vector types.
+- `HashMap`, `Heap`, and `RingBuffer` contract tests are skipped until `include/HashMap.hpp`, `include/Heap.hpp`, and `include/RingBuffer.hpp` exist.
 
-The latest observed `make test` run passes all tests.
+The latest observed `make test` run passes all available tests.
 
 ## Build
 
@@ -42,6 +49,7 @@ make test
 ```
 
 The tests compile and run through the method-level contract for each vector implementation.
+Container contract tests are also built and run. Tests for planned containers print `[SKIP]` until the matching header exists; once a header is added, its contract tests compile against that implementation.
 
 ## Run benchmarks
 
