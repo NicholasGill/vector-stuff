@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cstddef>
+#include <functional>
+#include <memory>
 #include <stdexcept>
 
 template <typename Key, typename Value>
@@ -21,6 +23,19 @@ public:
     void clear();
 
 private:
+    struct Node {
+        Key key;
+        Value value;
+        std::unique_ptr<Node> next;
+
+        Node(const Key& key, const Value& value)
+            : key(key),
+              value(value) {
+        }
+    };
+
+    std::size_t hash(const Key& key) const;
+
     std::size_t size_ = 0;
 };
 
@@ -67,4 +82,9 @@ void HashMap<Key, Value>::erase(const Key& key) {
 template <typename Key, typename Value>
 void HashMap<Key, Value>::clear() {
     size_ = 0;
+}
+
+template <typename Key, typename Value>
+std::size_t HashMap<Key, Value>::hash(const Key& key) const {
+    return std::hash<Key>{}(key);
 }
