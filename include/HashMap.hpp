@@ -89,7 +89,16 @@ void HashMap<Key, Value>::insert(const Key& key, const Value& value) {
 
 template <typename Key, typename Value>
 Value& HashMap<Key, Value>::at(const Key& key) {
-    (void)key;
+    const std::size_t bucket_index = hash(key) % bucket_count_;
+    Node* current = buckets_[bucket_index].get();
+
+    while (current != nullptr) {
+        if (current->key == key) {
+            return current->value;
+        }
+
+        current = current->next.get();
+    }
     throw std::out_of_range("HashMap::at missing key");
 }
 
