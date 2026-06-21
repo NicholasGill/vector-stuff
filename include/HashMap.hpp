@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <cstddef>
 #include <functional>
 #include <memory>
@@ -36,6 +37,8 @@ private:
 
     std::size_t hash(const Key& key) const;
 
+    static constexpr std::size_t bucket_count_ = 16;
+    std::array<std::unique_ptr<Node>, bucket_count_> buckets_;
     std::size_t size_ = 0;
 };
 
@@ -51,14 +54,37 @@ bool HashMap<Key, Value>::empty() const {
 
 template <typename Key, typename Value>
 bool HashMap<Key, Value>::contains(const Key& key) const {
-    (void)key;
+    const std::size_t bucket_index = hash(key) % bucket_count_;
+    const Node* current = buckets_[bucket_index].get();
+
+    while (current != nullptr) {
+        if (current->key == key) {
+            return true;
+        }
+
+        current = current->next.get();
+    }
     return false;
 }
 
 template <typename Key, typename Value>
 void HashMap<Key, Value>::insert(const Key& key, const Value& value) {
-    (void)key;
-    (void)value;
+    const std::size_t bucket_index = hash(key) % bucket_count_;
+    Node* current = buckets_[bucket_index].get();
+
+    while (current != nullptr) {
+        if (current->key == key) {
+            current->value = value;
+            return;
+        }
+
+        current = current->next.get();
+    }
+
+    auto new_node = std::make_unique<Node>(key, value);
+    new_node->next = std::move(buckets_[bucket_index]);
+    buckets_[bucket_index] = std::move(new_node);
+    ++size_;
 }
 
 template <typename Key, typename Value>
