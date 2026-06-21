@@ -89,8 +89,15 @@ void HashMap<Key, Value>::insert(const Key& key, const Value& value) {
 
 template <typename Key, typename Value>
 Value& HashMap<Key, Value>::at(const Key& key) {
+    return const_cast<Value&>(
+        static_cast<const HashMap&>(*this).at(key)
+    );
+}
+
+template <typename Key, typename Value>
+const Value& HashMap<Key, Value>::at(const Key& key) const {
     const std::size_t bucket_index = hash(key) % bucket_count_;
-    Node* current = buckets_[bucket_index].get();
+    const Node* current = buckets_[bucket_index].get();
 
     while (current != nullptr) {
         if (current->key == key) {
@@ -99,18 +106,26 @@ Value& HashMap<Key, Value>::at(const Key& key) {
 
         current = current->next.get();
     }
-    throw std::out_of_range("HashMap::at missing key");
-}
 
-template <typename Key, typename Value>
-const Value& HashMap<Key, Value>::at(const Key& key) const {
-    (void)key;
     throw std::out_of_range("HashMap::at missing key");
 }
 
 template <typename Key, typename Value>
 void HashMap<Key, Value>::erase(const Key& key) {
-    (void)key;
+    const std::size_t bucket_index = hash(key) % bucket_count_;
+    std::unique_ptr<Node>* current = &buckets_[bucket_index];
+
+    while (*current != nullptr) {
+        if ((*current)->key == key) {
+            auto removed_node = std::move(*current);
+            *current = std::move(removed_node->next);
+            --size_;
+            return;
+        }
+
+        current = &((*current)->next);
+    }
+
     throw std::out_of_range("HashMap::erase missing key");
 }
 
