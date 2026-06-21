@@ -131,6 +131,10 @@ void HashMap<Key, Value>::erase(const Key& key) {
 
 template <typename Key, typename Value>
 void HashMap<Key, Value>::clear() {
+    for (auto& bucket : buckets_) {
+        bucket.reset();
+    }
+
     size_ = 0;
 }
 

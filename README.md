@@ -25,11 +25,11 @@ Current implementation status:
 - `LinkedListVector` passes its method-level contract tests and uses sentinel nodes with `std::unique_ptr` ownership for forward links.
 - `LinkedListDequeVector` passes its method-level contract tests by using `LinkedListVector` internally.
 - `DequeVector` passes its method-level contract tests by using `ArrayVector` internally.
-- `HashMap` supports collision-aware insert, update, and contains operations; lookup, erase, and clear behavior remain incomplete.
+- `HashMap` passes its contract tests with collision-aware insert, update, lookup, erase, contains, and clear operations.
 - The test harness now reports method-level pass/fail results for all four vector types.
 - `Heap` and `RingBuffer` contract tests are skipped until `include/Heap.hpp` and `include/RingBuffer.hpp` exist.
 
-The latest observed `make test` run passes all vector tests but reports the expected failures for incomplete `HashMap` operations.
+The latest observed `make test` run passes all available tests.
 
 ## Build
 
